@@ -1,7 +1,7 @@
 'use strict'
 
-class Node{
-  constructor( data, next){
+class Node {
+  constructor( data, next ) {
     this.data = data
     this.next = next
   }
@@ -15,131 +15,130 @@ export default class LinkedList{
     this.tailNode = null
   }
 
-  getHeadNode(){
+  getHeadNode() {
     return this.headNode.data
   }
-
-  getTailNode(){
+ 
+  getTailNode() {
     return this.tailNode.data
   }
 
-  contains(item){
-    let currentnode = this.headNode
-    while (currentnode.next!== null){
-      if (currentnode.data === item){
-        return true
-      }
-      currentnode = currentnode.next
+  contains(item) {
+    let currentNode = this.headNode
+
+    while (currentNode.next !== null) {
+      if (currentNode.data === item) return true
+
+      currentNode = currentNode.next
     }
+
     return false
   }
 
-  find(item){
-    let currentnode = this.headNode
-    while (currentnode.next!== null){
-      if (currentnode.data === item){
-        return currentnode
-      }
-      currentnode = currentnode.next
+  find(item) {
+    let currentNode = this.headNode
+
+    while (currentNode.next!== null){
+      if (currentNode.data === item) return currentNode
+
+      currentNode = currentNode.next
     }
+
     return -1
   }
 
 
-  insert(item){
-    let firstNode = new Node (item, this.headNode)
-    if (this.headNode === null){
-      this.headNode = firstNode
+  insert(item) {
+    let currentNode = new Node(item, null)
 
+    if (this.currentLength === 0) {
+      this.headNode = currentNode
     }
-    else if (this.tailNode === null ){
-      this.headNode = new Node (this.headNode.data, firstNode)
-      this.tailNode = new Node (item, this.tailNode)
-    }
-    else {
-      let tailnode = new Node (item, null)
-      this.tailNode = tailnode
-      let currentnode = this.headNode
-      while (currentnode !== null){
-        currentnode = currentnode.next
-      }
-      currentnode = tailnode
-    }
-
-    this.currentLength ++
-  }
-
-  insertFirst(item){
-    let firstNode = new Node (item, this.headNode)
-    if (this.headNode === null){
-      this.headNode = firstNode
-
+    else if (this.currentLength === 1 ) {
+      this.headNode.next = currentNode
+      this.tailNode = currentNode
     }
     else {
-      let currentnode = this.headNode
-      this.headNode = new Node (item, currentnode)
+      this.tailNode.next = currentNode
+      this.tailNode = currentNode
     }
+
     this.currentLength ++
   }
 
-  insertBefore(beforeItem, item){
-    let previousnode = null
-    let currentnode = this.headNode
-    let nodeafter = null
-    let add = null
+  insertFirst(item) {
+    let headNode = new Node(item, this.headNode)
 
-    while (currentnode.data !== item){
-      previousnode = currentnode
-      currentnode = currentnode.next
-      nodeafter = currentnode.next.next
-    }
-    previousnode.next = new Node (beforeItem, currentnode)
-    this.headNode = previousnode
-    this.currentLength ++
+    this.headNode = headNode
 
+    this.currentLength++
   }
 
-  insertAfter(beforeItem, item){
-    let previousnode = null
-    let currentnode = this.headNode
-    let nodeafter = null
-    let add = null
+  insertBefore(data, existingData) {
+    let currentNode = this.headNode
+    let previousNode = null
 
-    while (currentnode.data !== item){
-      previousnode = currentnode
-      currentnode = currentnode.next
-      nodeafter = currentnode.next.data.next
+    while (currentNode.data !== existingData){
+      previousNode = currentNode
+      currentNode = currentNode.next
     }
 
-    currentnode.next = new Node (beforeItem, nodeafter)
-    previousnode.next = currentnode
-    this.headNode = previousnode
-    this.currentLength ++
+    previousNode.next = new Node(data, currentNode)
 
+    this.currentLength++
   }
 
-  remove(){
+  insertAfter(data, existingData) {
+    let currentNode = this.headNode
+    let previousNode = null
+
+    while (currentNode.data !== existingData){
+      previousNode = currentNode
+      currentNode = currentNode.next
+    }
+
+    currentNode.next = new Node(data, currentNode.next.next)
+
+    this.currentLength++
+  }
+
+  remove() {
     if (this.tailNode === null) return null
-    else {
-    let currentnode = this.headNode
-    let previousnode = null
 
-    while (currentnode.next !== null){
+    let currentNode = this.headNode
+    let previousNode = null
 
-      previousnode = currentnode
-      currentnode = currentnode.next
+    while (currentNode.next !== null){
+      previousNode = currentNode
+      currentNode = currentNode.next
     }
 
-    currentnode.next = null
-    this.headNode = currentnode
-    this.tailNode = previousnode
+    this.tailNode = previousNode
 
-    }
-    this.currentLength --
-
+    previousNode.next = null
+    
+    this.currentLength--
   }
 
+  removeFirst() {
+    if (this.currentLength === 0) return null
+      
+    this.headNode = this.headNode.next
 
+    this.currentLength--
+  }
 
+  isEmpty() {
+    return this.currentLength === 0 ? true : false
+  }
 
+  size() {
+    return this.currentLength
+  }
+
+  clear() {
+    while (this.currentLength > 0) {
+      this.removeFirst()
+    }
+  }
 }

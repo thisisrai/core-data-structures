@@ -7,12 +7,12 @@ chai.use(chaiChange)
 describe('PriorityQueue', () => {
   'use strict'
 
-  it('is a function', () => {
+  xit('is a function', () => {
     expect(PriorityQueue).to.be.a('function')
   })
 
   context('enqueue()', () => {
-    it('adds an element to the back of the stack.', () => {
+    xit('adds an element to the back of the stack.', () => {
       const myQueue = new PriorityQueue()
 
       myQueue.enqueue('first, with pri: 10', 10)
