@@ -1,93 +1,105 @@
-// 'use strict'
+'use strict'
 
-// class PriorityNode {
-//   constructor( data, priority, next ) {
-//     this.data = data
-//     this.priority = priority
-//     this.next = next
-//   }
+class PriorityNode {
+  constructor( data, priority, next ) {
+    this.data = data
+    this.priority = priority
+    this.next = null
+  }
 
-//   getData() {
-//     return this.data
-//   }
+  getData() {
+    return this.data
+  }
 
-//   getNext() {
-//     return this.next
-//   }
+  getNext() {
+    return this.next
+  }
 
-//   setNext(node) {
-//     this.next = node
-//   }
+  setNext(node) {
+    this.next = node
+  }
 
-//   getPriority() {
-//     return this.priority
-//   }
+  getPriority() {
+    return this.priority
+  }
 
-//   setPriority(priority) {
-//     this.priority = priority
-//   }
-// }
+  setPriority(priority) {
+    this.priority = priority
+  }
+}
 
-// export default class PriorityQueue {
-//   constructor() {
-//     this.frontNode = null
-//     this.backNode = null
-//     this.currentLength = 0
-//   }
-// // FIFO
-//   enqueue( data, priority ) {
-//     let stack = []
-//     let newNode = new PriorityNode(data, priority)
+export default class PriorityQueue {
+  constructor() {
+    this.headNode = null
+    this.tailNode = null
+    this.currentLength = 0
+  }
 
-//     if ( this.isEmpty() ) {
-//       this.frontNode = newNode
-//       this.backNode = newNode
-//     } else {
-//         // console.log('=-=-=-=-=-=-', this.frontNode.priority)
-//       while(this.frontNode.getPriority() >= priority) {
-//         stack.unshift(this.)
-//         this.dequeue()
-//       }
+  enqueue( data, priority ) {
+    let node = new PriorityNode(data, priority)
+    let currentHeadNode = this.headNode
 
-//       stack.forEach(function(node) {
-//         node.next = this.frontNode 
-        
-//         this.enqueue(node)
-//       })
-//     }
+    if (this.currentLength === 0) {
+      this.headNode = node
+    } else if (this.currentLength === 1) {
+      if (this.headNode.priority > priority) {
+        this.headNode.next = node
+        this.tailNode = node        
+      } else {
+        this.headNode = node
+        this.headNode.next = currentHeadNode
+        this.tailNode = currentHeadNode
+      }
+    } else {
+      let currentNode = this.headNode
+      let previousNode = null
 
-//     this.currentLength++
-//   }
+      if (currentNode.priority < priority) {
+        this.headNode = node
+        node.next = currentNode
+      } else {
+        while (currentNode.priority > priority) {
+          previousNode = currentNode
+          currentNode = currentNode.next
+        }
+        previousNode.next = node
+        node.next = currentNode
+      }
 
-//   dequeue() {
-//     if ( this.isEmpty() ) return null
+    }
 
-//     let node = this.frontNode
+    this.currentLength++
+  }
 
-//     this.frontNode = node.getNext()
-//     this.currentLength--
+  dequeue() {
+    if ( this.isEmpty() ) return null
 
-//     return node
-//   }
+    let node = this.headNode
 
-//   front() {
-//     if ( this.isEmpty() ) return null
+    this.headNode = node.getNext()
+    this.currentLength--
 
-//     return this.frontNode.data
-//   }
+    return node
+  }
 
-//   back() {
-//     if ( this.isEmpty() ) return null
+  front() {
+    if ( this.isEmpty() ) return null
 
-//     return this.backNode.data
-//   }
+    return this.headNode.data
+  }
 
-//   isEmpty() {
-//     return this.currentLength === 0 ? true : false
-//   }
+  back() {
+    if ( this.isEmpty() ) return null
 
-//   length() {
-//     return this.currentLength
-//   }
+    return this.tailNode.data
+  }
 
-// }
+  isEmpty() {
+    return this.currentLength === 0 ? true : false
+  }
+
+  length() {
+    return this.currentLength
+  }
+
+}

@@ -7,27 +7,26 @@ chai.use(chaiChange)
 describe('PriorityQueue', () => {
   'use strict'
 
-  xit('is a function', () => {
+  it('is a function', () => {
     expect(PriorityQueue).to.be.a('function')
   })
 
   context('enqueue()', () => {
-    xit('adds an element to the back of the stack.', () => {
+    it('adds an element to the back of the stack.', () => {
       const myQueue = new PriorityQueue()
 
-      myQueue.enqueue('first, with pri: 10', 10)
-      myQueue.enqueue('second, with pri: 5', 5)
-      myQueue.enqueue('third, with highest pri', 100)
+      myQueue.enqueue('Lowest Priority: 10', 10)
+      myQueue.enqueue('Mid priority: 15', 15)
+      myQueue.enqueue('head node', 100)
+      myQueue.enqueue('another', 25)
 
-      // console.log('=-=-=-=-\nFRONT NODE:', myQueue.frontNode)
-
-      expect(() => myQueue.enqueue('foo')).to.alter(() => myQueue.length(), { from: 0, to: 1 })
+      expect(myQueue.headNode.data).to.equal('head node')
     })
 
   })
 
   context('dequeue()', () => {
-    xit('returns and removes the front element in the queue', () => {
+    it('returns and removes the front element in the queue', () => {
       const myQueue = new PriorityQueue()
 
       myQueue.enqueue('front')
@@ -35,7 +34,7 @@ describe('PriorityQueue', () => {
       expect(() => myQueue.dequeue()).to.alter(() => myQueue.length(), { from: 1, to: 0 })
     })
 
-    xit('returns null if the stack is empty', () => {
+    it('returns null if the stack is empty', () => {
       const myQueue = new PriorityQueue()
 
       expect(myQueue.dequeue()).to.be.null
@@ -43,13 +42,13 @@ describe('PriorityQueue', () => {
   })
 
   context('isEmpty()', () => {
-    xit('returns true when stack is empty.', () => {
+    it('returns true when stack is empty.', () => {
       const myQueue = new PriorityQueue()
 
       expect(myQueue.isEmpty()).to.true
     })
 
-    xit('returns false when stack is loaded.', () => {
+    it('returns false when stack is loaded.', () => {
       const myQueue = new PriorityQueue()
 
       myQueue.enqueue('Car')
@@ -59,7 +58,7 @@ describe('PriorityQueue', () => {
   })
 
   context('length()', () => {
-    xit('returns the number of elements in the stack.', () => {
+    it('returns the number of elements in the stack.', () => {
       const myQueue = new PriorityQueue()
 
       myQueue.enqueue('Car')
@@ -70,16 +69,16 @@ describe('PriorityQueue', () => {
   })
 
   context('front()', () => {
-    xit('returns the front element of the queue or null if empty', () => {
+    it('returns the front element of the queue or null if empty', () => {
       const myQueue = new PriorityQueue()
 
-      myQueue.enqueue('front')
-      myQueue.enqueue('back')
+      myQueue.enqueue('front', 10)
+      myQueue.enqueue('back', 5)
 
       expect(myQueue.front()).to.equal('front')
     })
 
-    xit('returns null if the stack is empty', () => {
+    it('returns null if the stack is empty', () => {
       const myQueue = new PriorityQueue()
 
       expect(myQueue.front()).to.be.null
@@ -87,16 +86,16 @@ describe('PriorityQueue', () => {
   })
 
   context('back()', () => {
-    xit('returns the back element of the queue or null if empty', () => {
+    it('returns the back element of the queue or null if empty', () => {
       const myQueue = new PriorityQueue()
 
-      myQueue.enqueue('front')
-      myQueue.enqueue('back')
+      myQueue.enqueue('front', 10)
+      myQueue.enqueue('back', 5)
 
       expect(myQueue.back()).to.equal('back')
     })
 
-    xit('returns null if the stack is empty', () => {
+    it('returns null if the stack is empty', () => {
       const myQueue = new PriorityQueue()
 
       expect(myQueue.back()).to.be.null
