@@ -1,8 +1,11 @@
-Team name #irritating-dabchick
-Jorge Lopez and Rai Lee
-https://github.com/GuildCrafts/core-data-structures
+#Project: Core Data Structures
 
-# Core Data Structures
+###Team name: irritating-dabchick
+
+###Team Members: Jorge Lopez and Rai Lee
+
+###Goal: https://github.com/GuildCrafts/core-data-structures
+
 
 Tests and implementations for common data structures. See the full list in the [data-structures.md](data-structures.md) file.
 
@@ -10,8 +13,8 @@ Base repository for the [Core Data Structures](http://jsdev.learnersguild.org/go
 
 ## Installation and Setup
 
-Fork, run npm install.  
+- Fork
+- npm install
 
 ## Usage and Examples
-
-Day 1: 
+- npm test

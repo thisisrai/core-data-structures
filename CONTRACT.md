@@ -1,15 +1,30 @@
+###Goal: Core Data Structures 
+https://github.com/GuildCrafts/core-data-structures
+
+ - [x] Stack
+ - [x] Queue
+ - [x] Priority Queue
+ - [x] Linked List
+ - [ ] Doubly Linked List
+ - [ ] Set
+ - [ ] Hash Table
+ - [ ] Binary Search Tree
+ - [ ] Directed Graph
+
 Specifications
 
- - [ ] Artifact produced is a fork of the core-data-structures repo.
- - [ ] Can run all tests with npm test.
- - [ ] All tests are passing.
- - [ ] For each data structure in the list, there exists:
-    - [ ] a test file with unit tests for each method and property.
-    - [ ] an implementation file with a correct implementation of the data structure.
+ For the completed data structures checked above:
+
+ - [x] Artifact produced is a fork of the core-data-structures repo.
+ - [x] Can run all tests with npm test.
+ - [x] All tests are passing.
+ - [x] For each data structure in the list, there exists:
+    - [x] a test file with unit tests for each method and property.
+    - [x] an implementation file with a correct implementation of the data structure.
 
 Required
 
- - [ ] The artifact produced is properly licensed, preferably with the MIT license.
+ - [x] The artifact produced is properly licensed, preferably with the MIT license.
 
 Stretch
 
